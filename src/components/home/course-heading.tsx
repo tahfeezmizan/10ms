@@ -2,10 +2,6 @@ import { CourseData } from "@/typss/common";
 import ImageCarousel from "./image-carousel";
 
 export default function CourseHeading({ data }: { data: CourseData }) {
-  
-  const mediaData = data?.media || [];
-
-
   return (
     <div
       className="text-white"
@@ -16,12 +12,12 @@ export default function CourseHeading({ data }: { data: CourseData }) {
         backgroundPosition: "center",
       }}
     >
-      <div className="max-w-[1200px] container mx-auto grid grid-cols-4 items-center md:gap-12 pb-6 md:py-10 min-h-60 ">
-        <div className="col-span-3 gap-2">
+      <div className="max-w-[1200px] container mx-auto p-4 md:pb-0 grid grid-cols-1 md:grid-cols-4 row-reverse gap-5 items-center md:pt-8  ">
+        <div className="col-span-1 md:col-span-3 ">
           <h1 className="text-white mb-2 text-xl font-semibold  md:text-4xl">
             {data?.title}
           </h1>
-          <p className="tenms__paragraph text-gray-400 " dir="ltr">
+          <p className=" tenms__paragraph text-gray-400" dir="ltr">
             <span
               style={{ whiteSpace: "pre-wrap" }}
               dangerouslySetInnerHTML={{ __html: data?.description }}
@@ -30,7 +26,7 @@ export default function CourseHeading({ data }: { data: CourseData }) {
         </div>
 
         <div className="col-span-1 ">
-          <ImageCarousel data={mediaData} />
+          <ImageCarousel data={data} />
         </div>
       </div>
     </div>

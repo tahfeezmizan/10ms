@@ -1,4 +1,5 @@
 import CourseHeading from "@/components/home/course-heading";
+import SectionSlider from "@/components/home/section-slider";
 
 export default async function page() {
   let data = await fetch(
@@ -7,12 +8,13 @@ export default async function page() {
 
   let res = await data.json();
   const courseData = res.data;
+  
   console.log("Course Data", courseData?.sections);
-  const sections = courseData?.sections || [];
 
   return (
     <div className="">
       <CourseHeading data={courseData} />
+      <SectionSlider  />
       
     </div>
   );

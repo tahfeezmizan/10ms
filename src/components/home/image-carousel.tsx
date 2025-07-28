@@ -5,92 +5,73 @@ import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CourseData } from "@/typss/common";
 
-// Sample data for the carousel
-const carouselData = [
-  {
-    id: 1,
-    image: "/images/slide1.png",
-    title: "IELTS Course",
-    description: "Course by MUNZEREEN SHAHID",
-  },
-  {
-    id: 2,
-    image: "/placeholder.svg?height=400&width=600&text=Course+Materials",
-    title: "Course Materials",
-    description: "Study materials and resources",
-  },
-  {
-    id: 3,
-    image: "/placeholder.svg?height=400&width=600&text=Practice+Tests",
-    title: "Practice Tests",
-    description: "Mock tests and exercises",
-  },
-  {
-    id: 4,
-    image: "/placeholder.svg?height=400&width=600&text=Video+Lessons",
-    title: "Video Lessons",
-    description: "Interactive video content",
-  },
-  {
-    id: 5,
-    image: "/placeholder.svg?height=400&width=600&text=Overview",
-    title: "Course Overview",
-    description: "Complete course structure",
-  },
-  {
-    id: 6,
-    image: "/placeholder.svg?height=400&width=600&text=Instructor",
-    title: "Meet Your Instructor",
-    description: "Expert guidance and support",
-  },
-];
-
-export default function ImageCarousel({
-  mediaData,
-}: {
-  mediaData: CourseData;
-}) {
-
-    console.log("Media Data:", mediaData)
+export default function ImageCarousel({ data }: { data: CourseData }) {
+  const mediaData = data?.media;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselData.length);
+    setCurrentSlide((prev) => (prev + 1) % mediaData.length);
+    setShowVideo(false);
   };
 
-  // Function to go to previous slide
   const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + carouselData.length) % carouselData.length
-    );
+    setCurrentSlide((prev) => (prev - 1 + mediaData.length) % mediaData.length);
+    setShowVideo(false);
   };
 
-  // Function to go to specific slide
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
+    setShowVideo(false);
   };
 
-  return (
-    <div className=" mx-auto p-4">
-      {/* Main carousel container */}
-      <div className="relative w-80 bg-white  p-1 border-red-400 border-2 overflow-hidden">
-        {/* Main image display */}
-        <div className="relative border max-w-auto h-60 border-green-400 bg-gray-100">
-          <img
-            src={carouselData[currentSlide].image || "/placeholder.svg"}
-            alt={carouselData[currentSlide].title}
-            className="w-full h-full object-cover"
-          />
+  const handlePlayVideo = () => {
+    if (mediaData[currentSlide].resource_type === "video") {
+      setShowVideo(true);
+    }
+  };
 
-          {/* Play button overlay (for video content) */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Button
-              size="lg"
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-4"
-            >
-              <Play className="h-8 w-8 text-white" fill="white" />
-            </Button>
-          </div>
+  const currentMedia = mediaData[currentSlide];
+
+  return (
+    <div className="mx-auto ">
+      <div className="relative w-auto md:w-96 bg-transparent md:bg-white p-1.5 overflow-hidden">
+        {/* Main display area */}
+        <div className="relative max-w-auto h-60 border ">
+          {showVideo && currentMedia.resource_type === "video" ? (
+            <iframe
+              src={`https://www.youtube.com/embed/${currentMedia.resource_value}?autoplay=1`}
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <>
+              <img
+                src={
+                  currentMedia.resource_type === "image"
+                    ? currentMedia.resource_value
+                    : currentMedia.thumbnail_url || "/placeholder.svg"
+                }
+                alt={currentMedia.name || `Slide ${currentSlide + 1}`}
+                className="w-full h-full object-cover"
+              />
+
+              {/* Play button */}
+              {currentMedia.resource_type === "video" && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Button
+                    size="lg"
+                    className="bg-white rounded-full"
+                    onClick={handlePlayVideo}
+                  >
+                    <Play className="h-8 w-8 text-primary" fill="white" />
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
 
           {/* Left arrow */}
           <Button
@@ -114,20 +95,24 @@ export default function ImageCarousel({
         </div>
 
         {/* Thumbnail navigation */}
-        <div className="p-4 bg-white">
+        <div className="p-4 pl-2 bg-transparent md:bg-white">
           <div className="flex gap-2">
-            {carouselData.map((slide, index) => (
+            {mediaData?.map((slide, index) => (
               <button
-                key={slide.id}
+                key={slide.name || index}
                 onClick={() => goToSlide(index)}
-                className={`flex-shrink-0 w-20 h-12  overflow-hidden border-2 transition-all ${
+                className={`flex-shrink-0 w-20 h-12 overflow-hidden border-2 transition-all ${
                   currentSlide === index
                     ? "border-primary rounded-md ring-2 ring-green-200"
                     : "border-gray-200 hover:border-gray-300"
                 }`}
               >
                 <img
-                  src={slide.image || "/placeholder.svg"}
+                  src={
+                    slide.resource_type === "image"
+                      ? slide.resource_value
+                      : slide.thumbnail_url || "/placeholder.svg"
+                  }
                   alt={`Slide ${index + 1}`}
                   className="w-full h-full object-cover"
                 />
