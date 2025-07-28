@@ -1,9 +1,11 @@
+import CourseAccordion from "@/components/home/course-accordion";
 import CourseFeatures from "@/components/home/course-features";
 import CourseHeading from "@/components/home/course-heading";
 import CourseInstructor from "@/components/home/course-instructor";
 import FreePdfSection from "@/components/home/free-pdf-section";
 import LearningOutcomes from "@/components/home/learning-outcomes";
 import SectionSlider from "@/components/home/section-slider";
+import { InstructorsSection, PointersSection } from "@/typss/common";
 
 export default async function page() {
   let data = await fetch(
@@ -17,14 +19,18 @@ export default async function page() {
   type SectionItem = { type: string; [key: string]: any };
 
   const coursesInstructors = (
-    instractorData as SectionItem[] | undefined
+    instractorData as InstructorsSection[] | undefined
   )?.filter((item: SectionItem) => item.type === "instructors");
 
-  const coursesPointers = (instractorData as SectionItem[] | undefined)?.filter(
-    (item: SectionItem) => item.type === "pointers"
+  const courseFeatures = (instractorData as SectionItem[] | undefined)?.filter(
+    (item: SectionItem) => item.type === "about"
   );
 
-  console.log("Course Data", coursesPointers);
+  const coursesPointers = (
+    instractorData as PointersSection[] | undefined
+  )?.filter((item: SectionItem) => item.type === "pointers");
+
+  // console.log("Course Data", courseFeatures);
 
   return (
     <div className="">
@@ -37,6 +43,7 @@ export default async function page() {
           <CourseFeatures />
           <FreePdfSection />
           <LearningOutcomes data={coursesPointers} />
+          <CourseAccordion data={courseFeatures} />
         </div>
 
         <div className="col-span-1 "></div>
