@@ -99,7 +99,7 @@ export default function ImageCarousel({ data }: { data: CourseData }) {
           <div className="flex gap-2">
             {mediaData?.map((slide, index) => (
               <button
-                key={slide.name || index}
+                key={index}
                 onClick={() => goToSlide(index)}
                 className={`flex-shrink-0 w-20 h-12 overflow-hidden border-2 transition-all ${
                   currentSlide === index

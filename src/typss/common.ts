@@ -4,7 +4,6 @@ export interface NavItemProps {
   dropdown?: boolean;
 }
 
-
 // Media types
 interface Media {
   name: string;
@@ -280,7 +279,7 @@ interface FaqSection {
 }
 
 // Union type for all section types
-type Section = 
+type Section =
   | BundleItemsSection
   | OffersSection
   | InstructorsSection
@@ -378,5 +377,5 @@ export type {
   OldInfo,
   SecondaryCta,
   CourseData,
-  ApiResponse
+  ApiResponse,
 };
