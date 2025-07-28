@@ -1,5 +1,4 @@
-import CourseHeading from "@/components/course-heading";
-import { json } from "stream/consumers";
+import CourseHeading from "@/components/home/course-heading";
 
 export default async function page() {
   let data = await fetch(
@@ -8,6 +7,8 @@ export default async function page() {
 
   let res = await data.json();
   const courseData = res.data;
+  console.log("Course Data", courseData?.sections);
+  const sections = courseData?.sections || [];
 
   return (
     <div className="">

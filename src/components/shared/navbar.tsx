@@ -1,15 +1,15 @@
 "use client";
-import Link from "next/link";
-import { Menu, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MobileNavItemProps, NavItemProps } from "@/typss/common";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { NavItemProps } from "@/typss/common";
+import { ChevronDown, Menu, Phone } from "lucide-react";
+import Link from "next/link";
 
 import logo from "@/../public/10mslogo-svg.svg";
 import Image from "next/image";

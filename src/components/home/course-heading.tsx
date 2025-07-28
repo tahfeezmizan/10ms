@@ -1,7 +1,11 @@
-import { CourseHead } from "@/typss/common";
-import React from "react";
+import { CourseData } from "@/typss/common";
+import ImageCarousel from "./image-carousel";
 
-export default function CourseHeading({ data }: { data: CourseHead }) {
+export default function CourseHeading({ data }: { data: CourseData }) {
+  
+  const mediaData = data?.media || [];
+
+
   return (
     <div
       className="text-white"
@@ -12,8 +16,8 @@ export default function CourseHeading({ data }: { data: CourseHead }) {
         backgroundPosition: "center",
       }}
     >
-      <div className="container mx-auto flex flex-col gap-4 md:flex-row items-center md:gap-12 pb-6 md:py-10 min-h-60">
-        <div className="max-w-2xl">
+      <div className="max-w-[1200px] container mx-auto grid grid-cols-4 items-center md:gap-12 pb-6 md:py-10 min-h-60 ">
+        <div className="col-span-3 gap-2">
           <h1 className="text-white mb-2 text-xl font-semibold  md:text-4xl">
             {data?.title}
           </h1>
@@ -23,6 +27,10 @@ export default function CourseHeading({ data }: { data: CourseHead }) {
               dangerouslySetInnerHTML={{ __html: data?.description }}
             ></span>
           </p>
+        </div>
+
+        <div className="col-span-1 ">
+          <ImageCarousel data={mediaData} />
         </div>
       </div>
     </div>
