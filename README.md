@@ -14,16 +14,13 @@ This project was built as part of a **Frontend Engineer Level 1 assessment** for
 - **API:** Public Course API from 10 Minute School
 - **Rendering:** Server-side Rendering (SSR) + Incremental Static Regeneration (ISR)
 - **SEO:** Dynamic metadata from API
-- **Localization:** English / Bengali (EN / BN) language support
 
 ---
 
 ## 📦 Features
 
 - ✅ Fully responsive product page
-- ✅ Displays course title, description, promo trailer, instructor profile, and checklist
 - ✅ Dynamic rendering using real API data
-- ✅ Modular and reusable component architecture
 - ✅ SEO-ready with meta tags injected from API data
 - ✅ Default pricing logic implemented as per requirements
 
