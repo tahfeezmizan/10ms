@@ -1,4 +1,4 @@
-# 📘 IELTS Course Product Page Clone – Frontend Engineer Assessment
+# IELTS Course Product Page Clone – Frontend Engineer Assessment
 
 This project was built as part of a **Frontend Engineer Level 1 assessment** for **10 Minute School**. The objective was to **recreate the product page** for the **IELTS Course by Munzereen Shahid** using real API data and modern web technologies.
 
@@ -30,7 +30,7 @@ This project was built as part of a **Frontend Engineer Level 1 assessment** for
 
 ```bash
 # Clone the project
-git clone https://github.com/najim2004/10minuteschool-assessment.git
+git clone https://github.com/tahfeezmizan/10ms.git
 
 # Navigate to the project directory
 cd 10minuteschool-assessment
