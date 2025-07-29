@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export interface NavItemProps {
   label: string;
   href: string;
@@ -19,11 +21,6 @@ interface ChecklistItem {
   id: string;
   list_page_visibility: boolean;
   text: string;
-}
-
-// SEO data (currently empty in the provided data)
-interface SeoData {
-  // Define based on actual SEO structure when available
 }
 
 // CTA (Call to Action) text
@@ -306,11 +303,6 @@ interface OldInfo {
   slug: string;
 }
 
-// Secondary CTA group (empty in provided data)
-interface SecondaryCta {
-  // Define based on actual structure when available
-}
-
 // Main course data structure
 interface CourseData {
   slug: string;
@@ -324,11 +316,11 @@ interface CourseData {
   start_at: string;
   media: Media[];
   checklist: ChecklistItem[];
-  seo: SeoData[];
+
   cta_text: CtaText;
   sections: Section[];
   is_cohort_based_course: boolean;
-  secondary_cta_group: SecondaryCta[];
+
   delivery_method: string;
 }
 
@@ -346,7 +338,6 @@ interface ApiResponse {
 export type {
   Media,
   ChecklistItem,
-  SeoData,
   CtaText,
   BundleItemsSection,
   Offer,
@@ -375,7 +366,6 @@ export type {
   FaqSection,
   Section,
   OldInfo,
-  SecondaryCta,
   CourseData,
   ApiResponse,
 };

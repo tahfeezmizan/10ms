@@ -28,11 +28,6 @@ export default function SectionSlider({ data }: { data: OffersSection[] }) {
     }
   };
 
-  const visibleItems = filteredData.slice(
-    currentIndex,
-    currentIndex + itemsToShow
-  );
-
   return (
     <div className="">
       <div className="flex items-center justify-between gap-3 ">

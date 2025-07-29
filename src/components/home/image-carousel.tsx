@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CourseData } from "@/typss/common";
+import Image from "next/image";
 
 export default function ImageCarousel({ data }: { data: CourseData }) {
   const mediaData = data?.media;
@@ -34,8 +35,8 @@ export default function ImageCarousel({ data }: { data: CourseData }) {
   const currentMedia = mediaData[currentSlide];
 
   return (
-    <div className="mx-auto ">
-      <div className="relative w-auto md:w-96 bg-transparent md:bg-white p-1.5 overflow-hidden">
+    <div className="w-auto md:w-96 mx-auto border md:border-b-none overflow-hidden">
+      <div className="relative w-auto  bg-transparent md:bg-white p-1.5 overflow-hidden">
         {/* Main display area */}
         <div className="relative max-w-auto h-60 border ">
           {showVideo && currentMedia.resource_type === "video" ? (
@@ -48,13 +49,15 @@ export default function ImageCarousel({ data }: { data: CourseData }) {
             ></iframe>
           ) : (
             <>
-              <img
+              <Image
                 src={
                   currentMedia.resource_type === "image"
                     ? currentMedia.resource_value
                     : currentMedia.thumbnail_url || "/placeholder.svg"
                 }
                 alt={currentMedia.name || `Slide ${currentSlide + 1}`}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover"
               />
 
@@ -107,13 +110,15 @@ export default function ImageCarousel({ data }: { data: CourseData }) {
                     : "border-gray-200 hover:border-gray-300"
                 }`}
               >
-                <img
+                <Image
                   src={
                     slide.resource_type === "image"
                       ? slide.resource_value
                       : slide.thumbnail_url || "/placeholder.svg"
                   }
                   alt={`Slide ${index + 1}`}
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover"
                 />
               </button>

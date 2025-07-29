@@ -25,7 +25,7 @@ export default function CourseHeading({ data }: { data: CourseData }) {
           </p>
         </div>
 
-        <div className="col-span-1 ">
+        <div className="col-span-1 md:-mb-10">
           <ImageCarousel data={data} />
         </div>
       </div>

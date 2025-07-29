@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { InstructorsSection } from "@/typss/common";
+import Image from "next/image";
 
 export default function CourseInstructor({
   data,
@@ -21,10 +22,19 @@ export default function CourseInstructor({
                 <div className="w-24 h-2w-24 rounded-full overflow-hidden ">
                   {data?.[0]?.values?.map((instructor, index) => (
                     <div key={index} className="instructor-card">
-                      <img
+                      {/* <Image
                         src={instructor.image}
                         alt={instructor.name}
                         width="400"
+                        height="400"
+                        className="w-full h-full object-cover rounded-full"                        
+                      /> */}
+                      <Image
+                        src={instructor.image}
+                        alt={instructor.name}
+                        width={100}
+                        height={100}
+                        className="w-full h-full object-cover rounded-full"
                       />
                     </div>
                   ))}
